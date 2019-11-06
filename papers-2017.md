@@ -61,6 +61,18 @@ Unsupervised cross-domain image generation (DTN) Facebook
 
 Temporal ensembling for semi-supervised learning
 
+[beta-VAE: Learning Basic Visual Concepts with a Constrained Variational Framework](https://openreview.net/forum?id=Sy2fzU9gl) DeepMind
+
+- hyperparameter $\beta>1$ to balance latent channel capacity
+- solves the variance overfitting but encourages uninformative latent code??
+
+[Variational Lossy Autoencoder](https://arxiv.org/pdf/1611.02731.pdf) UCB
+
+- combine VAE with neural autoregressive models
+- VAE interpreted as a regularized autoencoder
+
+
+
 ## AAAI
 
 [Distant Domain Transfer Learning - AAAI17](https://www.ntu.edu.sg/home/sinnopan/publications/[AAAI17]Distant%20Domain%20Transfer%20Learning.pdf) Hong Kong University of Science and Technology
@@ -68,13 +80,29 @@ Temporal ensembling for semi-supervised learning
 -  Distant Domain Transfer Learning (DDTL), example: source - face, target - plane
 -  Selective Learning Algorithm (SLA), select relevant samples from mixture of intermediate domains
 -  measure of distance between two domains: **reconstruction error**
--  
+
+
+
+---
+
+## INTERSPEECH
+
+[Multitask Learning with Low-Level Auxiliary Tasksfor Encoder-Decoder Based Speech Recognition](https://www.isca-speech.org/archive/Interspeech_2017/pdfs/1118.PDF) Toyota Technological Institute at Chicago
+
+- hypothesis: intermediate representations as auxiliary supervision at lower levels of deep networks
+- experiments on conversational speech recognition, phoneme recognition (lower-level task), multi-task learning
+- encoder-decoder model for direct character transcription
+- compare multiple types of lower-level tasks, analyze the effects of the auxiliary tasks
 
 ## ArXiv
 
 [InfoVAE: Balancing Learning and Inference in Variational Autoencoders](https://arxiv.org/pdf/1706.02262.pdf)  Stanford
 
 - MMD: moments matching = distributions identical?
+- $\mathcal{L}_{ELBO}=\mathbb{E}_{p(x)}[-KL(q_\phi(z|x)||p(z))]+\mathbb{E}_{p(x)}\mathbb{E}_{q_\phi(z|x)}[\log p_\theta(x|z)]$
+- $KL(q_\phi(z|x)||p(z))$: measures how much information is lost when using $q$ to represent $p$
+- in VAE: $p$ is specified as a standard Normal distribution $p(z)=Normal(0,1)$
+- $\mathcal{L}_{MMD-VAE}=MMD(q_\phi(z)||p(z))+\mathbb{E}_{p(x)}\mathbb{E}_{q_\phi(z|x)}[\log p_\theta(x|z)]$
 - MMD-VAE better than Evidence Lower Bound (ELBO)-VASE
-- problems of traditional ELBO-VAE: uninformative latent code; 
+- problems of traditional ELBO-VAE: uninformative latent code; variance over-estimation in feature space
 - [tutorial blog](https://ermongroup.github.io/blog/a-tutorial-on-mmd-variational-autoencoders/)

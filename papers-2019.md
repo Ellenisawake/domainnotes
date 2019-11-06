@@ -1,3 +1,9 @@
+[Feature-Robustness, Flatness and Generalization Error for Deep Neural Networks](https://openreview.net/forum?id=rJxFpp4Fvr) ICLR20 submission
+
+- a training method that favors flat over sharp minima even at the cost of a slightly higher empirical error exhibits better generalization performance
+- feature robustness: mean change in loss over a dataset under small changes of features in the feature space
+- new flatness measure
+
 [On Target Shift in Adversarial Domain Adaptation](http://arxiv.org/abs/1903.06336v1)
 
 [Unsupervised Domain Adaptation using Deep Networks with Cross-Grafted   Stacks](http://arxiv.org/abs/1902.06328v2)
@@ -5,8 +11,6 @@
 [Cluster Alignment with a Teacher for Unsupervised Domain Adaptation](http://arxiv.org/abs/1903.09980v1)
 
 [Unsupervised Domain Adaptation Learning Algorithm for RGB-D Staircase   Recognition](http://arxiv.org/abs/1903.01212v4)
-
-DADA: Depth-aware Domain Adaptation in Semantic Segmentation
 
 MVX-Net: Multimodal VoxelNet for 3D Object Detection
 
@@ -16,13 +20,7 @@ Learning to Generate Synthetic Data via Compositing https://arxiv.org/pdf/1904.0
 
 See Better Before Looking Closer: Weakly Supervised Data Augmentation Network for Fine-Grained Visual Classification https://arxiv.org/pdf/1901.09891.pdf
 
-[Large Scale Adversarial Representation Learning (BigBiGAN)](https://arxiv.org/pdf/1907.02544.pdf) DeepMind
-
-- generation-based models for unsupervised representation learning
-- adversarially learned inference/bidirectional GAN
-- experiments on ImageNet
-- related: Adversarial feature learning - ICLR17; Adversarially learned inference - ICLR17
-- remarks: improved discriminator arch is better for representation learning
+- 
 
 [Triplet Loss Network for Unsupervised Domain Adaptation](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&ved=2ahUKEwiC3uj8r6PkAhVOURUIHZYnDvgQFjABegQIBBAC&url=https%3A%2F%2Fwww.mdpi.com%2F1999-4893%2F12%2F5%2F96%2Fpdf&usg=AOvVaw1GlRUU7d5-GlQTFM9Vteic)
 
@@ -34,15 +32,34 @@ Cross-Domain Complementary Learning with Synthetic Data for Multi-Person Part Se
 
 Boosting Supervision with Self-Supervision for Few-shot Learning https://arxiv.org/pdf/1906.07079.pdf
 
-Don’t  Worry  About  the  Weather: Unsupervised  Condition-Dependent  Domain  Adaptation https://arxiv.org/pdf/1907.11004.pdf
+[Don’t Worry About the Weather: Unsupervised  Condition-Dependent Domain Adaptation](https://arxiv.org/pdf/1907.11004.pdf)
 
-[RandAugment: Practical data augmentation with no separate search]() Google Brain
+[RandAugment: Practical data augmentation with no separate search](https://arxiv.org/pdf/1909.13719.pdf) Google Brain
 
 - separate search phase: training complexity, computational cost, infelxible to model or dataset size
 - reduce the search space --> simple grid search
 - optimal strength of augmentation depends on model size and training set size
 - experiments on: CIFAR-10, SVHN, ImageNet
 - benchmark with: AutoAugment, Fast AutoAugment, PBA
+- [TF](https://github.com/google-research/uda/tree/master/image/randaugment)
+
+[Unsupervised Data Augmentation for Consistency Training](https://openreview.net/forum?id=ByeL1R4FvS&noteId=BJgqLpcjFB) - Google Brain & CMU
+
+- NeurrIPS19 submission --> rejected, re-submitted to ICLR20
+- enforce consistent prediction between unlabeled sample and its augmented variants (minimize KL divergence)
+- customized augmentation for specific tasks to replace naive perturbations in previous SSL smoothing methods
+- **main claims**: TSA; task-specific augmentations are better than random; align different distributions of labeled &unlabeled data (DA)
+- augmentation strategies: [Auto-Augment](https://arxiv.org/pdf/1805.09501.pdf) for image classification; back translation/TF-IDF based word replacing for text classification; 
+- Training Signal Annealing (proposed, prevent overfitting)
+  - confidence threshold for correctly predicted labeled samples (avoid over-training on small amount of labeled samples)
+  - gradually (log, linear, exp) anneal threshold from $\frac{1}{k}$ to 1: $\eta_t=\frac{1}{k}+\lambda_t \times (1-\frac{1}{k})$
+- To-do: Auto-Augment + Mixup? $\to$ MixMatch + UDA ?
+- experiments: 6 language tasks (IMDb text) & 3 vision tasks (CIFAR-10)
+- categorization of SSL methods:
+  - graph-based label propagation via graph convolution
+  - modelling prediction target as latent variables
+  - consistency / smoothness enforcing
+- [official py2.7 TF1.13](https://github.com/google-research/uda) [unofficial PyTorch](https://github.com/ildoonet/unsupervised-data-augmentation)
 
 [MixMatch Domain Adaptation: Prize-winning solution for both tracks of VisDA 2019 challenge](<https://arxiv.org/pdf/1910.03903.pdf>) Samsung
 
@@ -54,22 +71,50 @@ Don’t  Worry  About  the  Weather: Unsupervised  Condition-Dependent  Domain  
 
  https://openreview.net/forum?id=rJxycxHKDS 
 
-[Unsupervised Domain Adaptation through Self-Supervision](https://openreview.net/forum?id=S1lF8xHYwS)
-
--  self-supervised auxiliary task to align domains in a direction
-
-[How Does Learning Rate Decay Help Modern Neural Networks?](https://arxiv.org/pdf/1908.01878.pdf) THU
-
-- implication on model transferability
-  - additional patterns learned in later stages of lrDecay are more complex and less transferable
 
 
+---
 
 
 
 ---
 
 ## NeurIPS19
+
+[Large Scale Adversarial Representation Learning (BigBiGAN)](https://arxiv.org/pdf/1907.02544.pdf) DeepMind
+
+- generation-based models for unsupervised representation learning
+- adversarially learned inference/bidirectional GAN
+- experiments on ImageNet
+- related: Adversarial feature learning - ICLR17; Adversarially learned inference - ICLR17
+- remarks: improved discriminator arch is better for representation learning
+
+[Self-Supervised Generalisation with Meta Auxiliary Learning (MAXL)](https://arxiv.org/pdf/1901.08933.pdf) ICL
+
+- Auxiliary learning: additional relevant features -> improve generalization
+  - different from multi-task learning: only performance of primary task is evaluated (but still need to benchmark?)
+- in supervised learning, defining a task = defining the labels
+  - for a given primary task, an optimal auxiliary task = one with optimal labels
+- MAXL: discover auxiliary labels using only primary task labels (auxiliary task trained with learned labels)
+  - multi-task network: primary and auxiliary task
+  - label-
+    generation network: labels for the auxiliary task
+- [pytorch 1.0 py3.7](https://github.com/lorenmt/maxl)
+
+[MixMatch: A Holistic Approach to Semi-Supervised Learning](https://arxiv.org/pdf/1905.02249.pdf) - Google Research
+
+- mixup on both labeled & unlabeled samples (0.75 beta distribution)
+- consistency regularization (L2) + entropy minimization + weight decay
+- experiments on: CIFAR10, STL10
+- benchmark with: PseudoLabel, Mixup, VAT, MeanTeacher
+- contributing component: mixup (on unlabeled), temperature sharpening, distribution averaging
+- [TF code](https://github.com/google-research/mixmatch) [unofficial Pytorch code](https://github.com/gan3sh500/mixmatch-pytorch)
+
+[Fast AutoAugment](https://arxiv.org/pdf/1905.00397.pdf) - Kakao
+
+- improvement over AutoAugment: more efficient search strategy based on density matching
+- experiments on: CIFAR-10, CIFAR-100, SVHN, ImageNet
+- [PyTorch code](https://github.com/KakaoBrain/fast-autoaugment) [with EfficientNet](https://github.com/JunYeopLee/fast-autoaugment-efficientnet-pytorch)
 
 [Implicit Semantic Data Augmentation for DeepNetworks](https://arxiv.org/pdf/1909.12220.pdf)  Tsinghua
 
@@ -122,7 +167,20 @@ Domain Generalization via Model-Agnostic Learning of Semantic Features Imperial 
 
 https://github.com/extreme-assistant/iccv2019
 
-[GA-DAN: Geometry-Aware Domain Adaptation Network for Scene TextDetection and Recognition](https://arxiv.org/pdf/1907.09653.pdf)
+[GA-DAN: Geometry-Aware Domain Adaptation Network for Scene Text Detection and Recognition](https://arxiv.org/pdf/1907.09653.pdf) NTU
+
+- cross-domain mapping in both appearance and geometry -->  geometry change
+- disentanglement of cycle-consistency loss: spatial + appearance
+- spatial learning: transformer with random-sampled code (spatial code)
+- region missing loss (better preserve the transformed image???)
+- $L_{cyc}=\lambda_a ACL + \lambda_s SCL + RML$
+
+[Online Hyper-parameter Learning for Auto-Augmentation Strategy (OHL-Auto-Aug)](https://arxiv.org/pdf/1905.07373.pdf) - SenseTime
+
+- improvement: economical, reduce search cost, accuracy increase
+- learn augmentation policy distribution (formulated as parameterized probability distribution) together with child network parameters
+- experiments on: CIFAR10 ImageNet
+- benchmark with: Auto-Augment
 
 [Semi-supervised Domain Adaptation via Minimax Entropy](https://arxiv.org/pdf/1904.06487.pdf) Boston University
 
@@ -321,9 +379,16 @@ Temporal Attentive Alignment for Large-Scale Video Domain Adaptation
 - [TF 1.5](https://github.com/brain-research/self-attention-gan)
 - remarks: self-attention at middle-to-high feature maps is better $\rightarrow$ more evidence & freedom with larger feature maps, and is similar with local conv with small feature maps
 
-**Transfer of Samples in Policy Search via Multiple Importance Sampling** *Politecnico di Milano
+[Population Based Augmentation:Efficient Learning of Augmentation Policy Schedules (PBA)](https://arxiv.org/pdf/1905.05393.pdf) - UC  Berkeley
 
-**TapNet: Neural Network Augmented with Task-Adaptive Projection for Few-Shot Learning** *KAIST
+- improvement: 1 Titan XP : 1000 P100 GPU hours, similar accuracy
+- generate non-stationary augmentation policy schedules instead of a fixed policy
+- experiments: SVHN, CIFAR-10, CIFAR-100
+- [TensorFlow code](https://github.com/arcelien/pba)
+
+Transfer of Samples in Policy Search via Multiple Importance Sampling *Politecnico di Milano
+
+TapNet: Neural Network Augmented with Task-Adaptive Projection for Few-Shot Learning** *KAIST
 
 **Fast Context Adaptation via Meta-Learning** *Oxford
 
@@ -363,6 +428,8 @@ Temporal Attentive Alignment for Large-Scale Video Domain Adaptation
 ---
 
 ## CVPR19
+
+
 
  [Characterizing and Avoiding Negative Transfer]( http://openaccess.thecvf.com/content_CVPR_2019/papers/Wang_Characterizing_and_Avoiding_Negative_Transfer_CVPR_2019_paper.pdf ) CMU
 
@@ -417,7 +484,8 @@ Efficient Multi-Domain Learning by Covariance Normalization
 
 - University of Sydney, University of Pittsburgh, CMU
 - exploit the geometric transformation-invariant semantic structure of images
-- **geometry-consistency constraint** for GAN
+- **geometry-consistency constraint** for GAN: 
+  - translation + geometric transformation = translation of geometrically transformed sample
 - benchmark with vanilla GAN, CycleGAN, DistanceGAN
 - Cityscapes, SVHN to MNIST, Google Maps, ImageNet horse to zebra, SYNTHIA to Cityscapes, Summer to Winter, photo to painting, day to night
 
@@ -453,7 +521,14 @@ Feature Transfer Learning for Face Recognition with Under-Represented Data
 
 - CUHK, SenseTime
 
-[Do Better ImageNet Models Transfer Better?] Oral
+[Do Better ImageNet Models Transfer Better?](https://arxiv.org/pdf/1805.08974.pdf) Oral Google Brain
+
+- relationship between architecture and transfer 
+- finding: when fix or fine-tune, strong correlation between ImageNet accuracy and transfer accuracy
+  - architectures generalize well
+  - features are less general
+- models evaluated: Inception, ResNet, DenseNet, MobileNet, NASNet
+- experiments on: Food-101, CIFAR-10/100, SUN397, Stanford Cars, VOC07, Oxford-IIIT Pets, Caltech-101...
 
 Animating Arbitrary Objects via Deep Motion Transfer
 
@@ -703,7 +778,18 @@ Xiaolong Wang & Allan Jabri, CMU & UC Berkeley
 - **To improve**:
 - **Remarks**: "In comparison to other popular probability measures such as total variation distance, Kullback-Leibler divergence, and Jensen-Shannon divergence that compare point-wise histogram embeddings alone, Wasserstein distance takes into account the properties of the underlying geometry of probability space"
 
-- 
+[AutoAugment: Learning Augmentation Strategies from Data CVPR19](https://arxiv.org/pdf/1805.09501.pdf)  Google Brain:
+
+- sub-policy: a processing function + magnitude/probability, sampled by controller and fixed in child network training
+- criterion: best validation accuracy on target
+- experiments on: CIFAR10, CIFAR100, SVHN, ImageNet
+- remarks: more training epochs needed to achieve better result
+- [official py 2 TF](https://github.com/tensorflow/models/tree/master/research/autoaugment)
+- [unofficial test code PyTorch](https://github.com/DeepVoltaire/AutoAugment)
+
+[A Theory of Fermat Paths for Non-Line-of-Sight Shape Reconstruction](http://openaccess.thecvf.com/content_CVPR_2019/papers/Xin_A_Theory_of_Fermat_Paths_for_Non-Line-Of-Sight_Shape_Reconstruction_CVPR_2019_paper.pdf) best paper, CMU
+
+
 
 ---
 
@@ -738,7 +824,7 @@ Xiaolong Wang & Allan Jabri, CMU & UC Berkeley
 - [PyTorch 0.3](https://github.com/quark0/darts)
 - [unofficial PyTorch 0.4.1](https://github.com/khanrc/pt.darts)
 
-[(BigGAN) Large Scale GAN Training for High Fidelity Natural Image Synthesis]() DeepMind
+[Large Scale GAN Training for High Fidelity Natural Image Synthesis (BigGAN)]() DeepMind
 
 - larger batch size, larger number of channels
 - follow-up work: BigGAN-deep, $S^3GAN$, BigBiGAN
@@ -783,13 +869,31 @@ Xiaolong Wang & Allan Jabri, CMU & UC Berkeley
 
 - #### [Emerging Disentanglement in Auto-Encoder Based Unsupervised Image Content Transfer](https://openreview.net/forum?id=BylE1205Fm)
 
-- #### [InfoBot: Transfer and Exploration via the Information Bottleneck](https://openreview.net/forum?id=rJg8yhAqKm)
+- 
+
+- 
+
+- 
+
+- 
+
+  
 
 - #### [DELTA: DEEP LEARNING TRANSFER USING FEATURE MAP WITH ATTENTION FOR CONVOLUTIONAL NETWORKS](https://openreview.net/forum?id=rkgbwsAcYm)
 
 - #### [Deep Online Learning Via Meta-Learning: Continual Adaptation for Model-Based RL](https://openreview.net/forum?id=HyxAfnA5tm)
 
   [Overcoming Catastrophic Forgetting for Continual Learning via Model Adaptation](https://openreview.net/forum?id=ryGvcoA5YX)
+
+[InfoBot: Transfer and Exploration via the Information Bottleneck](https://openreview.net/forum?id=rJg8yhAqKm) University of Montreal
+
+- training a goal-conditioned policy with information bottleneck
+- regularize RL agents in multi-goal settings to promote generalization
+
+[Learning Deep Representations by Mutual Information Estimation and Maximization (DIM)](https://openreview.net/forum?id=Bklr3j0cKX) Oral, Microsoft
+
+- Deep InfoMax (DIM)
+- maximize MI between input and output of DNN
 
 [Sliced Wasserstein Auto-Encoders](https://openreview.net/forum?id=H1xaJn05FQ)
 
@@ -812,4 +916,25 @@ Xiaolong Wang & Allan Jabri, CMU & UC Berkeley
 | operations (G-ops) | 3       | 4         | 12        | 31     |
 | parameter size (M) | 65      | 7         | 30        | 130    |
 | avg texture bias   | 0.571   | 0.688     | 0.779     | 0.828  |
+
+---
+
+## ArXiv
+
+ [Increasing Shape Bias in ImageNet-Trained Networks Using Transfer Learning and Domain-Adversarial Methods]( https://arxiv.org/pdf/1907.12892.pdf )
+
+
+
+[Unsupervised Domain Adaptation through Self-Supervision](https://openreview.net/forum?id=S1lF8xHYwS)
+
+-  self-supervised auxiliary task to align domains in a direction
+
+[How Does Learning Rate Decay Help Modern Neural Networks?](https://arxiv.org/pdf/1908.01878.pdf) THU
+
+- implication on model transferability
+  - additional patterns learned in later stages of lrDecay are more complex and less transferable
+
+[Wider Networks Learn Better Features](https://arxiv.org/pdf/1909.11572.pdf) Google (ICLR20 submission)
+
+-  effect of network width on learned features using [Activation Atlases](https://openai.com/blog/introducing-activation-atlases/)
 

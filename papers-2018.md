@@ -7,30 +7,26 @@
 - experiments on: digits, SYTHIA (season and weather change)
 - [TF1.6 py2.7](https://github.com/ricvolpi/generalize-unseen-domains)
 
-#### Algorithms and Theory for Multiple-Source Adaptation - NIPS18
+Algorithms and Theory for Multiple-Source Adaptation - NIPS18
 
 - problem to solve: multi-source adaptation to new mixture target domain
 - proposed method: distribution-weighted combination, DC-computing
 
-#### Conditional Adversarial Domain Adaptation - NIPS18 (CDAN)
+Conditional Adversarial Domain Adaptation - NIPS18 (CDAN)
 
 - problem to solve: to align multi-mode domains, adaptation of a layer is not sufficient to bridge domain shifts
 - proposed method: conditional adversarial network
 - conditional domain discriminator conditioned on feature representations and classifier predictions
 - [Caffe PyTorch 0.4](https://github.com/thuml/CDAN)
 
-
-
-#### [Adversarial Multiple Source Domain Adaptation - NIPS18](https://arxiv.org/pdf/1705.09684.pdf)
+[Adversarial Multiple Source Domain Adaptation - NIPS18](https://arxiv.org/pdf/1705.09684.pdf)
 
 - problem to solve: a generalisation bound for multi-source domain adaptation
 - proposed method: Multi-source Domain Adversarial Networks (MDANs)
 
 ![Screenshot from 2018-11-14 16-32-57](/home/ellen/Pictures/Screenshot from 2018-11-14 16-32-57.png)
 
-
-
-#### [Co-regularized Alignment for Unsupervised Domain Adaptation - NIPS18 (Co-DA)]()
+[Co-regularized Alignment for Unsupervised Domain Adaptation - NIPS18 (Co-DA)]()
 
 [Synthesize Policies for Transfer and Adaptation across Tasks and Environments - NIPS18](http://hexianghu.com/pdf/hexiang2018synpo.pdf)
 
@@ -87,14 +83,12 @@ scene semantic segmentation (VEIS)]()
 
 - https://github.com/fatemehSLH/VEIS
 
-#### [Multimodal Unsupervised Image-to-Image Translation - ECCV18 (MUNIT)](https://arxiv.org/pdf/1804.04732.pdf)
+[Multimodal Unsupervised Image-to-Image Translation - ECCV18 (MUNIT)](https://arxiv.org/pdf/1804.04732.pdf)
 
 - problem to solve: failure to generate diverse outputs
 - proposed method: multi-model, split domain-invariant content code and domain-specific style code (space)
 
-
-
-#### [Graph Adaptive Knowledge Transfer for Unsupervised Domain Adaptation - ECCV18](http://openaccess.thecvf.com/content_ECCV_2018/papers/Zhengming_Ding_Graph_Adaptive_Knowledge_ECCV_2018_paper.pdf)
+[Graph Adaptive Knowledge Transfer for Unsupervised Domain Adaptation - ECCV18](http://openaccess.thecvf.com/content_ECCV_2018/papers/Zhengming_Ding_Graph_Adaptive_Knowledge_ECCV_2018_paper.pdf)
 
 - proposed method: jointly optimise target labels and domain-invariant features, graph-based label propagation
 - subspace learning, cross-domain graph, label propagation, EM-like alternating optimisation step
@@ -107,7 +101,7 @@ scene semantic segmentation (VEIS)]()
 - drastic illumination variations across surveillance cameras
 - new synthetic dataset containing various illumination conditions
 
-#### [Unsupervised Domain Adaptation for Semantic Segmentation via Class-Balanced Self-Training- ECCV18 (CBST)](http://openaccess.thecvf.com/content_ECCV_2018/papers/Yang_Zou_Unsupervised_Domain_Adaptation_ECCV_2018_paper.pdf)
+[Unsupervised Domain Adaptation for Semantic Segmentation via Class-Balanced Self-Training- ECCV18 (CBST)](http://openaccess.thecvf.com/content_ECCV_2018/papers/Yang_Zou_Unsupervised_Domain_Adaptation_ECCV_2018_paper.pdf)
 
 - problem to solve: increase in representation power alone cannot overcome the domain gap
 - proposed method: iterative self-training a latent variable loss minimisation problem
@@ -273,25 +267,31 @@ scene semantic segmentation (VEIS)]()
 
 ## CVPR18
 
-#### Learning to Adapt Structured Output Space for Semantic Segmentation (AdaptSegNet)
+[Learning to Adapt Structured Output Space for Semantic Segmentation (AdaptSegNet)]()
 
 - GTA5/SYNTHIA to CItyscapes
 - [PyTorch](https://github.com/wasidennis/AdaptSegNet)
 
+[Non-local Neural Networks]() CMU & Facebook
 
+- non-local operation: response at a position as a weighted sum of the features at all features
 
+- vanilla Gaussian
+- embedded Gaussian: similarity in an embedding space
+- dot-product:  dot-product similarity
+- concatenation
 
-#### Unsupervised Domain Adaptation with Similarity Learning - CVPR18 (SimNet)
+[Unsupervised Domain Adaptation with Similarity Learning (SimNet)]()
 
 - 69.58% per-class average accuracy on VisDA17 validation set (ResNet-50), 72.9% with ImageNet pre-trained ResNet-152
 - 88.6% classification accuracy on Office-31 A->W (ResNet-50)
 
-#### Image to Image Translation for Domain Adaptation - CVPR18
+[Image to Image Translation for Domain Adaptation (I2IAdapt)]() - CVPR18
 
 - generalised framework: classification loss, reconstruction loss, feature D loss, translation loss, cycle loss, translated classification loss
 - experiments on digits, Office-31, GTA5 to Cityscapes
 
-#### Generate to adapt: Aligning domains using generative adversarial networks - CVPR18
+[Generate to adapt: Aligning domains using generative adversarial networks (Gen2Adapt)]() - CVPR18
 
 - train D, G to tune F to obtain target feature extractor??? F trained with source labels
 - joint embedding learning
@@ -301,19 +301,19 @@ scene semantic segmentation (VEIS)]()
 - works well when image generation is hard
 - G & D trained with discriminative info from source labels
 
-#### Collaborative and Adversarial Network for Unsupervised domain adaptation - CVPR18 (CAN)
+[Collaborative and Adversarial Network for Unsupervised domain adaptation(CAN)]()
 
 - problem to solve: domain information remains in lower layers but lost in top layers
 - set of domain discriminators, iterative pseudo-labelled sample selection
 - domain informative representation from lower blocks and domain uninformative representations from higher blocks
 - experiments on Office and ImageCLEF-DA
 
-#### [Conditional Image-to-Image Translation - CVPR18 (cd-GAN)](https://arxiv.org/pdf/1805.00251.pdf)
+[Conditional Image-to-Image Translation - CVPR18 (cd-GAN)](https://arxiv.org/pdf/1805.00251.pdf)
 
 - problem to solve: previous image translation is one-to-one deterministic
 - proposed method: conditioning, bidirectional translation, reconstruction
 
-#### Re-weighted Adversarial Adaptation Network for Unsupervised Domain Adaptation - CVPR18 (RAAN)
+[Re-weighted Adversarial Adaptation Network for Unsupervised Domain Adaptation (RAAN)]()
 
 - problem to solve: reduce feature distribution divergence and adapt classifier
 - proposed method: minimise optimal transport based earth-mover distance; re-weighted source domain label distribution
@@ -436,7 +436,7 @@ scene semantic segmentation (VEIS)]()
 - problem to solve: target label space is subset of source label space
 - proposed method: 
 
-[Taskonomy: Disentangling Task Transfer Learning](http://openaccess.thecvf.com/content_cvpr_2018/html/Zamir_Taskonomy_Disentangling_Task_CVPR_2018_paper.html)
+[Taskonomy: Disentangling Task Transfer Learning](http://openaccess.thecvf.com/content_cvpr_2018/html/Zamir_Taskonomy_Disentangling_Task_CVPR_2018_paper.html) Stanford, 
 
 [Large Scale Fine-Grained Categorization and Domain-Specific Transfer Learning](http://openaccess.thecvf.com/content_cvpr_2018/html/Cui_Large_Scale_Fine-Grained_CVPR_2018_paper.html)
 
@@ -517,43 +517,54 @@ scene semantic segmentation (VEIS)]()
 
 ## ICML
 
-#### CyCADA: Cycle-Consistent Adversarial Domain Adaptation - ICML18
+[Mutual Information Neural Estimation (MINE)](https://arxiv.org/pdf/1801.04062.pdf)
 
-#### [*Transfer Learning via Learning to Transfer - ICML18](http://proceedings.mlr.press/v80/wei18a/wei18a.pdf)
+- dual representation of KL:
+  - Donsker-Varadhan: $D_{KL}(\mathbb{P}||\mathbb{Q})=\sup_{T:\Omega\to \mathbb{R}}\mathbb{E}_\mathbb{P}[T]-\log (\mathbb{E}_\mathbb{Q}[e^T])$
+  - [$f$-divergence](https://arxiv.org/pdf/0809.0853.pdf): $D_{KL}(\mathbb{P}||\mathbb{Q})\ge\sup_{T\in \mathcal{F}}\mathbb{E}_\mathbb{P}[T]-\mathbb{E}_\mathbb{Q}[e^{T-1}]$
+- statistics network $T_\theta,\theta\in\Theta$: $I(X;Z)\ge I_\Theta(X,Z)$
+  - **definition**: $I_\Theta(X,Z)=\sup_{\theta\in\Theta}\mathbb{E}_{\mathbb{P}_{XZ}}[T_\theta]-\log(\mathbb{E}_{\mathbb{P}_{X}\otimes\mathbb{P}_{Z}}[e^{T_\theta}])$ (and a MINE-$f$)
+  - sample from $(\bar{x},z),(x,\bar{z})\sim\mathbb{P}_{XZ}$
+- [unofficial pytorch](https://github.com/sungyubkim/MINE-Mutual-Information-Neural-Estimation-)
+- follow-up: [A Data-Efficient MINE for Statistical Dependency Testing](https://openreview.net/forum?id=SklOypVKvS) ICLR20 submission
+
+[CyCADA: Cycle-Consistent Adversarial Domain Adaptation]()
+
+[Transfer Learning via Learning to Transfer](http://proceedings.mlr.press/v80/wei18a/wei18a.pdf)
 
 - problem to solve: automatically determine what and how to transfer
 - proposed method: combine meta-learning and transfer learning
 - comparison with traditional TL. multi-task learning, lifelong (meta) learning
 
-#### [Pseudo-task Augmentation: From Deep Multitask Learning to Intratask Sharing—and Back - ICML18](http://proceedings.mlr.press/v80/meyerson18a/meyerson18a.pdf)
+[Pseudo-task Augmentation: From Deep Multitask Learning to Intratask Sharing—and Back - ICML18](http://proceedings.mlr.press/v80/meyerson18a/meyerson18a.pdf)
 
 - problem to solve: multi-task learning from single task
 - proposed method: task augmentation with pseudo tasks, multiple decoders for single task
 
-#### [Progress & Compress: A scalable framework for continual learning - ICML18](http://proceedings.mlr.press/v80/schwarz18a/schwarz18a.pdf)
+[Progress & Compress: A scalable framework for continual learning - ICML18](http://proceedings.mlr.press/v80/schwarz18a/schwarz18a.pdf)
 
 - problem to solve: sequential continual learning
 - proposed method: knowledge base of previous solutions and active column for current task
 - active learning and consolidation of new task into knowledge base
 - experiments on sequential handwritten alphabets classification, Atari and 3D maze game
 
-#### [Detecting and Correcting for Label Shift with Black Box Predictors - ICML18](http://proceedings.mlr.press/v80/lipton18a/lipton18a.pdf)
+[Detecting and Correcting for Label Shift with Black Box Predictors - ICML18](http://proceedings.mlr.press/v80/lipton18a/lipton18a.pdf)
 
 - problem to solve: detect and quantify label shift, correct classifier without target label
 - proposed method: 
 
-#### [Learning Adversarially Fair and Transferable Representations - ICML18](http://proceedings.mlr.press/v80/madras18a/madras18a.pdf)
+[Learning Adversarially Fair and Transferable Representations - ICML18](http://proceedings.mlr.press/v80/madras18a/madras18a.pdf)
 
 - problem to solve: representation learning for fair transfer
 - proposed method: connect group fairness metrics (demographic parity, equalise odds, equal opportunity)
 
-#### [Learning Semantic Representations for Unsupervised Domain Adaptation - ICML18 (MSTN)](http://proceedings.mlr.press/v80/xie18c/xie18c.pdf)
+[Learning Semantic Representations for Unsupervised Domain Adaptation - ICML18 (MSTN)](http://proceedings.mlr.press/v80/xie18c/xie18c.pdf)
 
 - problem to solve: category-aware feature alignment/mapping
 - proposed method: use moving average centroid alignment to align labelled source centroid and pseudo-labelled target centroid
 - few false pseudo labels can lead to extremely biased estimation in mini batch SGD training - moving average
 
-#### [Rectify Heterogeneous Models with Semantic Mapping - ICML18](http://proceedings.mlr.press/v80/ye2018c/ye2018c.pdf)
+[Rectify Heterogeneous Models with Semantic Mapping - ICML18](http://proceedings.mlr.press/v80/ye2018c/ye2018c.pdf)
 
 - problem to solve: learn and use transferable (heterogeneous) models, for model reuse
 - proposed method: meta information of features, rectify via heterogeneous predictor mapping
@@ -564,7 +575,7 @@ scene semantic segmentation (VEIS)]()
 - experiments on general classification, user quality classification, academic paper classification
 - discussion of extension to deep networks
 
-#### [JointGAN: Multi-Domain Joint Distribution Learning with Generative Adversarial Nets  - ICML18](http://proceedings.mlr.press/v80/pu18a/pu18a.pdf)
+[JointGAN: Multi-Domain Joint Distribution Learning with Generative Adversarial Nets  - ICML18](http://proceedings.mlr.press/v80/pu18a/pu18a.pdf)
 
 - problem to solve: multi-source domain joint learning, lack of learned sample mechanism for multiple domain marginal distrbutions
 - proposed method: learn decomposed marginal and conditional distribution by adversarial training (combined together as joint distribution)
@@ -681,7 +692,7 @@ Multi-Adversarial Domain Adaptation
 
 Beyond sharing weights for deep domain adaptation EPFL
 
-### Adversarial teacher-student learning for unsupervised domain adaptation - ICASSP18 https://arxiv.org/pdf/1804.00644.pdf
+[Adversarial teacher-student learning for unsupervised domain adaptation - ICASSP18](https://arxiv.org/pdf/1804.00644.pdf)
 
 - problem to solve: 
 - proposed method: 

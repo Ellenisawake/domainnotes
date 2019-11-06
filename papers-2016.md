@@ -1,6 +1,6 @@
 ## NIPS
 
-[InfoGAN: Interpretable Representation Learning byInformation Maximizing Generative Adversarial Nets](https://arxiv.org/abs/1606.03657) UCB, OpenAI
+[InfoGAN: Interpretable Representation Learning by Information Maximizing Generative Adversarial Nets](https://arxiv.org/abs/1606.03657) UCB, OpenAI
 
 - disentangled representation -> helpful for the relevant but unknown tasks
 - an unsupervised learning algorithm must guess the likely set of downstream tasks
@@ -18,6 +18,8 @@ Deep coral: Correlation alignment for deep domain adaptation (DeepCORAL)
 Deep reconstruction-classification networks for unsupervised domain adaptation (DRCN)
 
 Pixel-level domain transfer
+
+Temporal Segment Networks
 
 ## CVPR
 
