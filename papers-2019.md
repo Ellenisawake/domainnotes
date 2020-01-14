@@ -1,3 +1,20 @@
+---
+
+---
+
+### CVPR20 VL3 workshop / Cross-Domain Few-Shot Learning Challenge
+
+[**A New Benchmark for Evaluation of Cross-Domain Few-Shot Learning**](https://arxiv.org/pdf/1912.07200.pdf) UCSD & IBM
+
+- CD-FSL benchmark: target label space **disjoint** from source
+  - source: ImageNet
+  - target: CropDisease (natural), EuroSAT (satellite), ISIC (medical color), ChestX (medical grayscale)
+- **insights**: accuracy correlates with dataset similarity to ImageNet
+
+---
+
+
+
 [Feature-Robustness, Flatness and Generalization Error for Deep Neural Networks](https://openreview.net/forum?id=rJxFpp4Fvr) ICLR20 submission
 
 - a training method that favors flat over sharp minima even at the cost of a slightly higher empirical error exhibits better generalization performance
@@ -81,6 +98,8 @@ Boosting Supervision with Self-Supervision for Few-shot Learning https://arxiv.o
 
 ## NeurIPS19
 
+[Generalized Sliced Wasserstein Distances (GSW)](https://papers.nips.cc/paper/8319-generalized-sliced-wasserstein-distances.pdf) Institut Polytechnique de Paris, HRL
+
 [Large Scale Adversarial Representation Learning (BigBiGAN)](https://arxiv.org/pdf/1907.02544.pdf) DeepMind
 
 - generation-based models for unsupervised representation learning
@@ -139,13 +158,26 @@ Domain Generalization via Model-Agnostic Learning of Semantic Features Imperial 
 
 ***Modular Universal Reparameterization: Deep Multi-task Learning Across Diverse Domains
 
-***Transferable Normalization: Towards Improving Transferability of Deep Neural Networks
+[Transferable Normalization: Towards ImprovingTransferability of Deep Neural Networks (TransNorm)](http://ise.thss.tsinghua.edu.cn/~mlong/doc/transferable-normalization-nips19.pdf) Tsinghua
+
+- BN is the constraint of network transferability
+- experiments on: digits, Offce31, ImageCLEF-DA, Office-Home, VisDA17
 
 ***Learning New Tricks From Old Dogs: Multi-Source Transfer Learning From Pre-Trained Networks
 
 ***Generalized Block-Diagonal Structure Pursuit: Learning Soft Latent Task Assignment against Negative Transfer
 
-***Catastrophic Forgetting Meets Negative Transfer: Batch Spectral Shrinkage for Safe Transfer Learning
+[Catastrophic Forgetting Meets Negative Transfer:Batch Spectral Shrinkage for Safe Transfer Learning](http://ise.thss.tsinghua.edu.cn/~mlong/doc/batch-spectral-shrinkage-nips19.pdf) Tsinghua
+
+- same with Batch Spectral Penalization-ICML19?
+- proposed: regularization by **penalizing smaller singular values**
+- definition of catastrophic forgetting and negative transfer???
+- weight parameters: spectral components with small singular values in high layers are not transferable
+- feature representations: spectral components with small singular values are decayed with sufficient training data
+- principal angle -> **max** of cosine similarity --> smallest angle
+- corresponding angle to measure transferability (component of feature matrix from ICML paper)
+- opposite conclusion & measures with the ICML paper?
+- experiments on: Stanford Dogs, Oxford-IIIT Pet, CUB-200-2011, Stanford Cars, FGVC Aircraft
 
 ***Learning Transferable Graph Exploration
 
@@ -165,7 +197,7 @@ Domain Generalization via Model-Agnostic Learning of Semantic Features Imperial 
 
 ## ICCV19
 
-https://github.com/extreme-assistant/iccv2019
+[SinGAN: Learning a Generative Model from a Single Natural Image]( http://openaccess.thecvf.com/content_ICCV_2019/papers/Shaham_SinGAN_Learning_a_Generative_Model_From_a_Single_Natural_Image_ICCV_2019_paper.pdf ) **best paper**
 
 [GA-DAN: Geometry-Aware Domain Adaptation Network for Scene Text Detection and Recognition](https://arxiv.org/pdf/1907.09653.pdf) NTU
 
@@ -186,6 +218,7 @@ https://github.com/extreme-assistant/iccv2019
 
 - semi-supervised few-shot
 - remark: unsupervised methods perform poorly in semi-supervised setting???
+- [pytorch0.4](https://github.com/VisionLearningGroup/SSDA_MME)
 
 [Episodic Training for Domain Generalization](https://arxiv.org/pdf/1902.00113.pdf) QUML
 
@@ -200,7 +233,19 @@ https://github.com/extreme-assistant/iccv2019
 
 - [pytorch 1.0](https://github.com/stanis-morozov/unq)
 
-[Larger Norm More Transferable: An Adaptive Feature Norm Approach for Unsupervised Domain Adaptation](https://arxiv.org/abs/1811.07456)
+[Larger Norm More Transferable: An Adaptive Feature Norm Approach for Unsupervised Domain Adaptation (AFN) Oral](https://arxiv.org/abs/1811.07456) Sun Yat-sen University
+
+- discrepancy: target domain yields much smaller feature norms compared to source
+- existing statistical discrepancy: $\mathcal{H}-divergence$, $\mathcal{H}\Delta\mathcal{H}-divergence$, MMD, correlation distance
+  - RevGrad empirically measure $\mathcal{H}-divergence$ by a parametric domain discriminator
+  - MCD reduces  $\mathcal{H}\Delta\mathcal{H}-divergence$
+- contribution: 
+  - a statistic distance to calculate mean-feature-norm discrepancy across domains
+  - restrict the expected feature norms of the two domains to a shared scalar
+  - Stepwise AFN, progressive feature-norm enlargement for each individual sample across domain
+- experiments on: Office31, Office-Home, ImageCLEF-DA, VisDA17
+- remarks: task-specific features with larger norms $\to$ better transfer
+- [pytorch 0.4.1](https://github.com/jihanyang/AFN)
 
 [A Novel Unsupervised Camera-aware Domain Adaptation Framework for Person Re-identification](https://arxiv.org/abs/1904.03425)
 
@@ -429,9 +474,7 @@ TapNet: Neural Network Augmented with Task-Adaptive Projection for Few-Shot Lear
 
 ## CVPR19
 
-
-
- [Characterizing and Avoiding Negative Transfer]( http://openaccess.thecvf.com/content_CVPR_2019/papers/Wang_Characterizing_and_Avoiding_Negative_Transfer_CVPR_2019_paper.pdf ) CMU
+[Characterizing and Avoiding Negative Transfer]( http://openaccess.thecvf.com/content_CVPR_2019/papers/Wang_Characterizing_and_Avoiding_Negative_Transfer_CVPR_2019_paper.pdf ) CMU
 
 [A Style-Based Generator Architecture for Generative Adversarial Networks (StyleGAN)]() Nvidia
 
@@ -574,7 +617,9 @@ Deep Defocus Map Estimation using Domain Adaptation
 
 GCAN: Graph Convolutional Adversarial Network for Unsupervised Domain Adaptation
 
-Domain Specific Batch Normalization for Unsupervised Domain Adaptation
+[Domain Specific Batch Normalization for Unsupervised Domain Adaptation (DSBN)](https://arxiv.org/pdf/1906.03950.pdf)
+
+- experiments on: Office31, Office-Home and VisDA17
 
 Bidirectional Learning for Domain Adaptation of Semantic Segmentation
 
@@ -704,7 +749,7 @@ Attending to Discriminative Certainty for Domain Adaptation
 - experiments on: PACS, VLCS, Office-Home and digits 
 - [code](https://github.com/fmcarlucci/JigenDG)
 
-#### [Contrastive Adaptation Network for Unsupervised Domain Adaptation]()
+[Contrastive Adaptation Network for Unsupervised Domain Adaptation]()
 
 - University of Technology Sydney
 - Office-31, VisDA-2017
@@ -714,7 +759,7 @@ Attending to Discriminative Certainty for Domain Adaptation
 
 THU
 
-#### [Universal Domain Adaptation]() THU
+[Universal Domain Adaptation]() THU
 
 - [PyTorch1.0 implementation](https://github.com/thuml/Universal-Domain-Adaptation)
 
@@ -744,7 +789,7 @@ Sapienza University of Rome
 - **Experiments on**: GTA5/SYNTHIA  $\to$ Cityscapes
 - [PyTorch 1.0](https://github.com/RoyalVane/CLAN)
 
-#### [Learning Correspondence from the Cycle-consistency of Time **Oral**](https://arxiv.org/pdf/1903.07593.pdf https://github.com/xiaolonw/TimeCycle)
+[Learning Correspondence from the Cycle-consistency of Time **Oral**](https://arxiv.org/pdf/1903.07593.pdf https://github.com/xiaolonw/TimeCycle)
 
 Xiaolong Wang & Allan Jabri, CMU & UC Berkeley
 
@@ -762,7 +807,7 @@ Xiaolong Wang & Allan Jabri, CMU & UC Berkeley
 - **To improve**:
 - **Remarks**: https://zhuanlan.zhihu.com/p/61607755 https://drive.google.com/file/d/1kxTATg1WX9QtyM_IqQZDEtwr052IdDZJ/view
 
-#### [Sliced Wasserstein Discrepancy for Unsupervised Domain Adaptation]() Apple
+[Sliced Wasserstein Discrepancy for Unsupervised Domain Adaptation]() Apple
 
 - **Problem to solve**: improve discrepancy measure for adversarial learning based approach
 - **Key ideas**:
@@ -795,7 +840,7 @@ Xiaolong Wang & Allan Jabri, CMU & UC Berkeley
 
 ## ICLR19
 
-#### [Improving the Generalization of Adversarial Training with Domain Adaptation](https://openreview.net/forum?id=SyfIfnC5Ym) HUST
+[Improving the Generalization of Adversarial Training with Domain Adaptation](https://openreview.net/forum?id=SyfIfnC5Ym) HUST
 
 - Use DA to deal with few available adversarial example problem
 
@@ -838,9 +883,9 @@ Xiaolong Wang & Allan Jabri, CMU & UC Berkeley
 - [unofficial TF](https://github.com/taki0112/BigGAN-Tensorflow)
 - [official TF model](https://tfhub.dev/deepmind/biggan-256/2)
 
-#### LEARNING FACTORIZED REPRESENTATIONS FOR OPEN-SET DOMAIN ADAPTATION](https://openreview.net/forum?id=SJe3HiC5KX)
+[LEARNING FACTORIZED REPRESENTATIONS FOR OPEN-SET DOMAIN ADAPTATION](https://openreview.net/forum?id=SJe3HiC5KX)
 
-#### [Multi-Domain Adversarial Learning](https://openreview.net/forum?id=Sklv5iRqYX) UCSF & INRIA
+[Multi-Domain Adversarial Learning](https://openreview.net/forum?id=Sklv5iRqYX) UCSF & INRIA
 
 - adapt to multiple domains (average risk) under categorical shift, semi-supervised
 - claimed contributions: risk bound with $\mathcal{H}$-divergence, loss for SSL MDL, experiments
@@ -860,10 +905,7 @@ Xiaolong Wang & Allan Jabri, CMU & UC Berkeley
 - remarks: check the proofs in appendix
 
 
-
-#### [Improving the Generalization of Adversarial Training with Domain Adaptation](https://openreview.net/forum?id=SyfIfnC5Ym)
-
-- #### [Regularized Learning for Domain Adaptation under Label Shift](https://openreview.net/forum?id=rJl0r3R9KX)
+[Regularized Learning for Domain Adaptation under Label Shift](https://openreview.net/forum?id=rJl0r3R9KX)
 
 - #### [Learning to Learn without Forgetting by Maximizing Transfer and Minimizing Interference](https://openreview.net/forum?id=B1gTShAct7)
 
@@ -916,6 +958,21 @@ Xiaolong Wang & Allan Jabri, CMU & UC Berkeley
 | operations (G-ops) | 3       | 4         | 12        | 31     |
 | parameter size (M) | 65      | 7         | 30        | 130    |
 | avg texture bias   | 0.571   | 0.688     | 0.779     | 0.828  |
+
+
+
+## ICLR19 workshop
+
+[Split Batch Normalization: Improving Semi-Supervised Learning under Domain Shift](https://openreview.net/pdf?id=B1gKiN7luV)
+
+- separate BN for different distributions
+
+[Unifying semi-supervised and robust learning by mixup](https://openreview.net/pdf?id=r1gp1jRN_4)
+
+- SSL v.s. robust learning under label noise in lack of large scale clean data
+- conclusion: SSL outperforms robust learning
+
+
 
 ---
 

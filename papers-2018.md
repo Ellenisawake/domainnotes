@@ -78,6 +78,10 @@ Conditional Adversarial Domain Adaptation - NIPS18 (CDAN)
 
 ## ECCV18
 
+[Modeling Visual Context is Key to Augmenting Object Detection Datasets](https://arxiv.org/pdf/1807.07428.pdf) INRIA
+
+- [python](https://github.com/dvornikita/context_aug)
+
 [Effective use of synthetic data for urban
 scene semantic segmentation (VEIS)]()
 
